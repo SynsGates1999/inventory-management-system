@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class UserMapper {
 
-    public User toEntity(UserRequest request, Role role) {
+    public User toEntity(UserRequest request, Role role, String hashedPassword) {
         if (request == null) {
             return null;
         }
@@ -17,7 +17,7 @@ public class UserMapper {
         return User.builder()
                 .username(request.getUsername())
                 .email(request.getEmail())
-                .passwordHash(request.getPassword())
+                .passwordHash(hashedPassword)
                 .fullName(request.getFullName())
                 .role(role)
                 .build();
